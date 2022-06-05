@@ -1,3 +1,9 @@
+#!/usr/bin/env node
+
+/* Stretch (Optional)
+To use shebang, your can give boxit.js the executable permission by running
+chmod u+x boxit.js */
+
 /*
 Box a List of Words in The CLI
 In this homework, you will create a script that can take any number of arguments 
@@ -20,6 +26,7 @@ $ node boxit.js
 ┗┛ 
 */
 
+
 function drawLine(num) {
     return "━".repeat(num)
 }
@@ -41,28 +48,28 @@ function drawBarsAround(str, longest) {
 }
 
 //Boxit Function
-    let arr = process.argv.slice(2)
-   //Find the longest element in the array 
-    let longest = 0
+let arr = process.argv.slice(2)
+//Find the longest element in the array 
+let longest = 0
 
-    if (arr.length !== 0) {
-        let nameArray = arr.slice()
-        longest = nameArray.sort(function (a, b) {
-            return b.length - a.length
-        })[0].length
+if (arr.length !== 0) {
+    let nameArray = arr.slice()
+    longest = nameArray.sort(function (a, b) {
+        return b.length - a.length
+    })[0].length
+}
+// Top Border
+let output = drawTopBorder(longest) + "\n"
+
+//Print Names with Surrounding Lines
+if (arr.length !== 0) {
+    for (let i = 0; i < arr.length; i++) {
+        output += drawBarsAround(arr[i], longest) + "\n"
+        if (i !== arr.length - 1) output += drawMiddleBorder(longest) + "\n"
     }
-    // Top Border
-    let output = drawTopBorder(longest) + "\n"
+}
 
-    //Print Names with Surrounding Lines
-    if (arr.length !== 0) {
-        for (let i = 0; i < arr.length; i++) {
-            output += drawBarsAround(arr[i], longest) + "\n"
-            if (i !== arr.length - 1) output += drawMiddleBorder(longest) + "\n"
-        }
-    }
+//Bottom Border
+output += drawBottomBorder(longest)
 
-    //Bottom Border
-    output += drawBottomBorder(longest)
-
-   console.log(output)
+console.log(output)
