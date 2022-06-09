@@ -2,7 +2,10 @@
 
 /* Stretch (Optional)
 To use shebang, your can give boxit.js the executable permission by running
-chmod u+x boxit.js */
+chmod u+x boxit.js , example usage:
+$ ./boxit.js 'Jon Snow' 'Cersei Lannister' 'Daenerys Targaryen'
+$ ./boxit.js 'Jon Snow'
+*/
 
 /*
 Box a List of Words in The CLI
