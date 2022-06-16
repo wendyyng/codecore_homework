@@ -232,21 +232,24 @@
 
 
 
-//Please note that this turtle script doesn't support negative coordinates.
 
-//The Turtle: Create the Turtle Class
+
+//The Turtle: Create the Turtle class 
 class Turtle {
+    //The class constructor will take two arguments (in order): x & y coordinates.
     constructor (x, y){
         this.x = x
         this.y = y
         this.points = [[x, y]]
+        //Moving along x-axis by default
         this.axis = "x"
+        //Direction is right by default
         this.direction = "right"
     }
-    //Moving the Turtle: Forward method
+    //Moving the Turtle: Forward method that takes a number of steps then updates the Turtle instance with its new position after moving that many steps. 
+    //Keep track of every movement the turtle makes including the first one.
     forward(steps){
         for(let i = 1; i < steps + 1; i++){
-            //If the direction is in the direction of x axis, x moves foward
             if(this.axis === "x"){
                 if(this.direction === "right"){
                     this.points.push([(this.x + i), this.y])
@@ -263,13 +266,15 @@ class Turtle {
             } 
 
         }
+        //Update the Turtle instance with the new position
         this.x = this.points[this.points.length - 1][0]
         this.y = this.points[this.points.length - 1][1]
         // console.log(this.axis)
         // console.log(this.direction)
         return this
     }
-    //Turning the Turtle: Right method
+    //Turning the Turtle: Right method that takes zero arguments. When right is called, update the Turtle instance to rotate its facing to the right. 
+    //A turtle should begin facing east.
    right(){
         if(this.axis === "x"){
             if(this.direction === "right"){
@@ -334,7 +339,7 @@ class Turtle {
         // console.log(height)
         //Begin Log
         let result = "-- BEGIN LOG\n"
-        //Coordinates
+        //Draw the path
         for(let i = 0; i < height + 1; i++){
             let temp = ""
             for(let j = 0; j <= width; j++){
@@ -353,8 +358,14 @@ class Turtle {
     }
 }
 
+//Making sure that the methods are working properly by using the examples from the question
+//Uncomment to print to the console
+// console.log(new Turtle(0, 0).forward(3).allPoints()) //return [ [ 0, 0 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ] ]
+// console.log(new Turtle(0, 0).forward(3).right().forward(2).allPoints()) //return [ [ 0, 0 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ], [ 3, 1 ], [ 3, 2 ] ]
+// console.log(new Turtle(0, 4).forward(3).left().forward(3).allPoints()) //return [[ 0, 4 ], [ 1, 4 ],[ 2, 4 ], [ 3, 4 ],[ 3, 3 ], [ 3, 2 ],[ 3, 1 ]]
 
 //Examples of usage:
+//Please note that this turtle script doesn't support negative coordinates.
 new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forward(5).print()
 // The above would log the following to the screen:
 // -- BEGIN LOG
@@ -365,17 +376,14 @@ new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forwar
 // •    •
 // ••••••
 // -- END LOG
-// const flash = new Turtle(0, 4).forward(3).left().forward(3);
-// flash.allPoints() // returns [ [0, 4], [1, 4], [2, 4], [3, 4], [3, 3], [3, 2], [3, 1] ]
-const flash2 = new Turtle(0, 3).forward(3).left().forward(3);
-flash2.print();
+const flash = new Turtle(0, 3).forward(3).left().forward(3);
+flash.print();
 // The above would log the following to the screen:
 // -- BEGIN LOG
 //    •
 //    •
 // ••••
 // -- END LOG
-
 new Turtle(0, 4)
 .forward(3)
 .left()
