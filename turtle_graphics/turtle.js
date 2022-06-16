@@ -190,7 +190,7 @@
 // □□□■□□□□■□
 // □□□■■■■■■□
 // -- END LOG
-*/
+
 // Stretch
 // As A Script
 // Make the turtle graphics program usable as a script. It should take a string as a an argument that is seperated by dashes (i.e. ->). This string will contain all turtle commands in abbreviated form:
@@ -227,6 +227,12 @@
 
 // $ node --output=drawing.txt f10-r-f10-r-f10-r-f10
 // 🐢 Drawing written to drawing.txt
+
+
+
+
+
+//Please note that this turtle script doesn't support negative coordinates.
 
 //The Turtle: Create the Turtle Class
 class Turtle {
@@ -346,3 +352,55 @@ class Turtle {
         console.log(result)
     }
 }
+
+
+//Examples of usage:
+new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forward(5).print()
+// The above would log the following to the screen:
+// -- BEGIN LOG
+// ••••••
+// •    •
+// •    •
+// •    •
+// •    •
+// ••••••
+// -- END LOG
+// const flash = new Turtle(0, 4).forward(3).left().forward(3);
+// flash.allPoints() // returns [ [0, 4], [1, 4], [2, 4], [3, 4], [3, 3], [3, 2], [3, 1] ]
+const flash2 = new Turtle(0, 3).forward(3).left().forward(3);
+flash2.print();
+// The above would log the following to the screen:
+// -- BEGIN LOG
+//    •
+//    •
+// ••••
+// -- END LOG
+
+new Turtle(0, 4)
+.forward(3)
+.left()
+.forward(3)
+.right()
+.forward(5)
+.right()
+.forward(8)
+.right()
+.forward(5)
+.right()
+.forward(3)
+.left()
+.forward(3)
+.print();
+// The above would log the following to the screen:
+// -- BEGIN LOG
+// □□□□□□□□□□
+// □□□■■■■■■□
+// □□□■□□□□■□
+// □□□■□□□□■□
+// ■■■■□□□□■□
+// □□□□□□□□■□
+// ■■■■□□□□■□
+// □□□■□□□□■□
+// □□□■□□□□■□
+// □□□■■■■■■□
+// -- END LOG
