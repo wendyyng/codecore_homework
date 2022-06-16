@@ -412,3 +412,51 @@ new Turtle(0, 4)
 // □□□■□□□□■□
 // □□□■■■■■■□
 // -- END LOG
+
+//Stretch: As A Script
+//Make the turtle graphics program usable as a script. It should take a string as a an argument that is seperated by dashes (i.e. ->). 
+//This string will contain all turtle commands in abbreviated form:
+// tX,Y for new Turtle where X & Y are numbers representing the starting x & y coordinates. If this command is not given, begin the turtle at (0, 0).
+// fN for forward where N is a number representing how many units the turtle moves forward.
+// r for right
+// l for left
+
+if(process.argv.slice(2).length !== 0 && !process.argv[2].includes('--output')){
+    const input = process.argv.slice(2).toString()
+
+let arr = input.split("-")
+
+//The starting X & Y coordinates
+let startingX
+let startingY
+if(arr[0].includes(",")){
+    //tX,Y for new Turtle where X & Y are numbers representing the starting x & y coordinates. 
+    startingX = parseInt(arr[0].slice(1).split(",")[0])
+    startingY = parseInt(arr[0].slice(1).split(",")[1])
+    arr.shift()
+}else{
+    //If this command is not given, begin the turtle at (0, 0).
+    startingX = 0
+    startingY = 0
+}
+
+let output = new Turtle(startingX, startingY)
+
+for(let command of arr){
+    //fN for forward where N is a number representing how many units the turtle moves forward.
+    if(command[0] === 'f'){
+        output.forward(parseInt(command.slice(1)))
+    //r for right
+    }else if(command === 'r'){
+        output.right()
+    //l for left
+    }else if(command === 'l'){
+        output.left()
+    }
+}
+
+// console.log(arr)
+// console.log(output.points)
+output.print()
+}
+
