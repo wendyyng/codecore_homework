@@ -203,10 +203,10 @@
 
 // $ node turtle.js t5,5-f10-r-f5-r-f10-r-f5-r-f2-r-f5-l-f2-l-f5
 // •••••••••••
-// • • •         •
-// • • •         •
-// • • •         •
-// • • •         •
+// • • •     •
+// • • •     •
+// • • •     •
+// • • •     •
 // •••••••••••
 // $ node turtle.js f10-r-r-f10-l-f5-l-f10-r-f5-r-f11
 // •••••••••••
@@ -215,10 +215,10 @@
 // •
 // •
 // •••••••••••
-//                 •
-//                 •
-//                 •
-//                 •
+//           •
+//           •
+//           •
+//           •
 // •••••••••••
 // Save To a File
 // Have your script accept an option --output=[filename<]/code> where [filename] corresponds to the name of a file. If the option is used, write the turtle drawing to the file using fs.writeFile. Notify the user of that the write was completed.
@@ -228,16 +228,11 @@
 // $ node --output=drawing.txt f10-r-f10-r-f10-r-f10
 // 🐢 Drawing written to drawing.txt
 
-
-
-
-
-
-
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //The Turtle: Create the Turtle class 
 class Turtle {
     //The class constructor will take two arguments (in order): x & y coordinates.
-    constructor (x, y){
+    constructor(x, y) {
         this.x = x
         this.y = y
         this.points = [[x, y]]
@@ -248,22 +243,22 @@ class Turtle {
     }
     //Moving the Turtle: Forward method that takes a number of steps then updates the Turtle instance with its new position after moving that many steps. 
     //Keep track of every movement the turtle makes including the first one.
-    forward(steps){
-        for(let i = 1; i < steps + 1; i++){
-            if(this.axis === "x"){
-                if(this.direction === "right"){
+    forward(steps) {
+        for (let i = 1; i < steps + 1; i++) {
+            if (this.axis === "x") {
+                if (this.direction === "right") {
                     this.points.push([(this.x + i), this.y])
-                }else if(this.direction === "left"){
+                } else if (this.direction === "left") {
                     this.points.push([(this.x - i), this.y])
                 }
-                
-            }else if(this.axis === "y"){
-                if(this.direction === "up"){
+
+            } else if (this.axis === "y") {
+                if (this.direction === "up") {
                     this.points.push([this.x, (this.y - i)])
-                }else if(this.direction === "down"){
+                } else if (this.direction === "down") {
                     this.points.push([this.x, (this.y + i)])
                 }
-            } 
+            }
 
         }
         //Update the Turtle instance with the new position
@@ -275,63 +270,62 @@ class Turtle {
     }
     //Turning the Turtle: Right method that takes zero arguments. When right is called, update the Turtle instance to rotate its facing to the right. 
     //A turtle should begin facing east.
-   right(){
-        if(this.axis === "x"){
-            if(this.direction === "right"){
+    right() {
+        if (this.axis === "x") {
+            if (this.direction === "right") {
                 this.direction = "down"
-            }else if(this.direction === "left"){
+            } else if (this.direction === "left") {
                 this.direction = "up"
             }
             this.axis = "y"
-            
-        }else if(this.axis === "y"){
-            if(this.direction === "up"){
-                this.direction = "right"
-            }else if(this.direction === "down"){
-                this.direction = "left"
-            }
-            this.axis = "x"
-        }
-        
-        return this
-   }
-   //Turning the Turtle: Left Method
-    left(){
 
-        if(this.axis === "x"){
-            if(this.direction === "right"){
+        } else if (this.axis === "y") {
+            if (this.direction === "up") {
+                this.direction = "right"
+            } else if (this.direction === "down") {
+                this.direction = "left"
+            }
+            this.axis = "x"
+        }
+
+        return this
+    }
+    //Turning the Turtle: Left Method
+    left() {
+
+        if (this.axis === "x") {
+            if (this.direction === "right") {
                 this.direction = "up"
-            }else if(this.direction === "left"){
+            } else if (this.direction === "left") {
                 this.direction = "down"
             }
             this.axis = "y"
-        }else if(this.axis === "y"){
-            if(this.direction === "up"){
+        } else if (this.axis === "y") {
+            if (this.direction === "up") {
                 this.direction = "left"
-            }else if(this.direction === "down"){
+            } else if (this.direction === "down") {
                 this.direction = "right"
             }
             this.axis = "x"
         }
-        
+
         return this
     }
     //All Points: allPoints method which returns an array containing all coordinates the turtle has walked over.
-    allPoints(){
-        // console.log(this.points)
+    allPoints() {
         return this.points
     }
     //Print: Create a print method that draws the path that the turtle walked over as a string and logs it to the console. 
     //You should use the array of coordinates returned by .allPoints() as your starting point.
-    print(){
+    print() {
         //Find the width and length of the grid
         let width = 0
         let height = 0
-        for(let point of this.allPoints()){
-            if(point[0] > width){
+        for (let point of this.allPoints()) {
+            if (point[0] > width) {
                 width = point[0]
             }
-            if(point[1] > height){
+            if (point[1] > height) {
                 height = point[1]
             }
         }
@@ -340,21 +334,22 @@ class Turtle {
         //Begin Log
         let result = "-- BEGIN LOG\n"
         //Draw the path
-        for(let i = 0; i < height + 1; i++){
+        for (let i = 0; i < height + 1; i++) {
             let temp = ""
-            for(let j = 0; j <= width; j++){
-                if(this.points.find(point => point[0] === j && point[1] === i)){
+            for (let j = 0; j <= width; j++) {
+                if (this.points.find(point => point[0] === j && point[1] === i)) {
                     temp += "■"
-                }else{
+                } else {
                     temp += "□"
                 }
-                if(j === width) temp += "\n"
+                if (j === width) temp += "\n"
             }
             result += temp
         }
         //End Log
         result += "-- END LOG"
         console.log(result)
+        return result;
     }
 }
 
@@ -365,53 +360,56 @@ class Turtle {
 // console.log(new Turtle(0, 4).forward(3).left().forward(3).allPoints()) //return [[ 0, 4 ], [ 1, 4 ],[ 2, 4 ], [ 3, 4 ],[ 3, 3 ], [ 3, 2 ],[ 3, 1 ]]
 
 //Examples of usage:
+//Command line: "node turtle.js"
 //Please note that this turtle script doesn't support negative coordinates.
-new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forward(5).print()
-// The above would log the following to the screen:
-// -- BEGIN LOG
-// ••••••
-// •    •
-// •    •
-// •    •
-// •    •
-// ••••••
-// -- END LOG
-const flash = new Turtle(0, 3).forward(3).left().forward(3);
-flash.print();
-// The above would log the following to the screen:
-// -- BEGIN LOG
-//    •
-//    •
-// ••••
-// -- END LOG
-new Turtle(0, 4)
-.forward(3)
-.left()
-.forward(3)
-.right()
-.forward(5)
-.right()
-.forward(8)
-.right()
-.forward(5)
-.right()
-.forward(3)
-.left()
-.forward(3)
-.print();
-// The above would log the following to the screen:
-// -- BEGIN LOG
-// □□□□□□□□□□
-// □□□■■■■■■□
-// □□□■□□□□■□
-// □□□■□□□□■□
-// ■■■■□□□□■□
-// □□□□□□□□■□
-// ■■■■□□□□■□
-// □□□■□□□□■□
-// □□□■□□□□■□
-// □□□■■■■■■□
-// -- END LOG
+if (process.argv.slice(2).length === 0) {
+    new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forward(5).print()
+    // The above would log the following to the screen:
+    // -- BEGIN LOG
+    // ••••••
+    // •    •
+    // •    •
+    // •    •
+    // •    •
+    // ••••••
+    // -- END LOG
+    const flash = new Turtle(0, 3).forward(3).left().forward(3);
+    flash.print();
+    // The above would log the following to the screen:
+    // -- BEGIN LOG
+    //    •
+    //    •
+    // ••••
+    // -- END LOG
+    new Turtle(0, 4)
+        .forward(3)
+        .left()
+        .forward(3)
+        .right()
+        .forward(5)
+        .right()
+        .forward(8)
+        .right()
+        .forward(5)
+        .right()
+        .forward(3)
+        .left()
+        .forward(3)
+        .print();
+    // The above would log the following to the screen:
+    // -- BEGIN LOG
+    // □□□□□□□□□□
+    // □□□■■■■■■□
+    // □□□■□□□□■□
+    // □□□■□□□□■□
+    // ■■■■□□□□■□
+    // □□□□□□□□■□
+    // ■■■■□□□□■□
+    // □□□■□□□□■□
+    // □□□■□□□□■□
+    // □□□■■■■■■□
+    // -- END LOG
+}
 
 //Stretch: As A Script
 //Make the turtle graphics program usable as a script. It should take a string as a an argument that is seperated by dashes (i.e. ->). 
@@ -420,43 +418,76 @@ new Turtle(0, 4)
 // fN for forward where N is a number representing how many units the turtle moves forward.
 // r for right
 // l for left
-
-if(process.argv.slice(2).length !== 0 && !process.argv[2].includes('--output')){
-    const input = process.argv.slice(2).toString()
-
-let arr = input.split("-")
-
-//The starting X & Y coordinates
-let startingX
-let startingY
-if(arr[0].includes(",")){
-    //tX,Y for new Turtle where X & Y are numbers representing the starting x & y coordinates. 
-    startingX = parseInt(arr[0].slice(1).split(",")[0])
-    startingY = parseInt(arr[0].slice(1).split(",")[1])
-    arr.shift()
-}else{
-    //If this command is not given, begin the turtle at (0, 0).
-    startingX = 0
-    startingY = 0
-}
-
-let output = new Turtle(startingX, startingY)
-
-for(let command of arr){
-    //fN for forward where N is a number representing how many units the turtle moves forward.
-    if(command[0] === 'f'){
-        output.forward(parseInt(command.slice(1)))
-    //r for right
-    }else if(command === 'r'){
-        output.right()
-    //l for left
-    }else if(command === 'l'){
-        output.left()
+//Example usage: $ node turtle.js f10-r-r-f10-l-f5-l-f10-r-f5-r-f11
+ // The above would log the following to the screen:
+// •••••••••••
+// •
+// •
+// •
+// •
+// •••••••••••
+//           •
+//           •
+//           •
+//           •
+// •••••••••••
+const turtleCommand = function(arr){
+    //The starting X & Y coordinates
+    let startingX
+    let startingY
+    if (arr[0].includes(",")) {
+        //tX,Y for new Turtle where X & Y are numbers representing the starting x & y coordinates. 
+        startingX = parseInt(arr[0].slice(1).split(",")[0])
+        startingY = parseInt(arr[0].slice(1).split(",")[1])
+        arr.shift()
+    } else {
+        //If this command is not given, begin the turtle at (0, 0).
+        startingX = 0
+        startingY = 0
     }
+
+    let output = new Turtle(startingX, startingY)
+
+    for (let command of arr) {
+        //fN for forward where N is a number representing how many units the turtle moves forward.
+        if (command[0] === 'f') {
+            output.forward(parseInt(command.slice(1)))
+            //r for right
+        } else if (command === 'r') {
+            output.right()
+            //l for left
+        } else if (command === 'l') {
+            output.left()
+        }
+    }
+
+    return output.print()
 }
 
-// console.log(arr)
-// console.log(output.points)
-output.print()
+if (process.argv.slice(2).length !== 0 && !process.argv[2].includes('--output')) {
+    const input = process.argv.slice(2).toString()
+    let arr = input.split("-")
+    turtleCommand(arr)
 }
 
+//Stretch: Save To a File
+//Have your script accept an option --output=[filename<]/code> where [filename] corresponds to the name of a file. 
+//If the option is used, write the turtle drawing to the file using fs.writeFile. Notify the user of that the write was completed.
+
+if (process.argv.slice(2).length !== 0 && process.argv[2].includes('--output=')) {
+    const fs = require('fs');
+    let fileName = process.argv.slice(2, 3).toString().split('=')[1]
+    let data = process.argv.slice(3).toString()
+    let arr = data.split("-")
+    let content = turtleCommand(arr)
+
+    fs.writeFile(fileName, content, (err) => {
+        if (err)
+            console.log(err);
+        else {
+            console.log("🐢 Drawing written to " + fileName);
+            fs.readFileSync(fileName, "utf8");
+            console.log("Write is completed.")
+        }
+    });
+}
