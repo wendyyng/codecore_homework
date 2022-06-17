@@ -15,10 +15,10 @@
 // The above would log the following to the screen:
 
 //   ••••••
-//   •       •
-//   •       •
-//   •       •
-//   •       •
+//   •    •
+//   •    •
+//   •    •
+//   •    •
 //   ••••••
 // The above drew a 5 by 5 square.
 
@@ -154,8 +154,8 @@
 // flash.print();
 
 // -- BEGIN LOG
-//        •
-//        •
+//    •
+//    •
 // ••••
 // -- END LOG
 // When implementing print, feel free to choose any character you prefer to represent the turtles path instead of # and feel free to choose another one for the background instead of _>.
@@ -319,30 +319,40 @@ class Turtle {
     //You should use the array of coordinates returned by .allPoints() as your starting point.
     print() {
         //Find the width and length of the grid
-        let width = 0
-        let height = 0
+        let positive_width = 0
+        let negative_width = 0
+        let positive_height = 0
+        let negative_height = 0
         for (let point of this.allPoints()) {
-            if (point[0] > width) {
-                width = point[0]
+            if (point[0] > 0 && point[0] > positive_width) {
+                positive_width = point[0]
             }
-            if (point[1] > height) {
-                height = point[1]
+
+            if (point[0] < 0 && point[0] < negative_width) {
+                negative_width = point[0]
+            }
+
+            if (point[1] > 0 && point[1] > positive_height) {
+                positive_height = point[1]
+            }
+
+            if (point[1] < 0 && point[1] < negative_height) {
+                negative_height = point[1]
             }
         }
-        // console.log(width)
-        // console.log(height)
+
         //Begin Log
         let result = "-- BEGIN LOG\n"
         //Draw the path
-        for (let i = 0; i < height + 1; i++) {
+        for (let i = negative_height; i < positive_height + 1; i++) {
             let temp = ""
-            for (let j = 0; j <= width; j++) {
+            for (let j = negative_width; j <= positive_width; j++) {
                 if (this.points.find(point => point[0] === j && point[1] === i)) {
                     temp += "■"
                 } else {
                     temp += "□"
                 }
-                if (j === width) temp += "\n"
+                if (j === positive_width) temp += "\n"
             }
             result += temp
         }
@@ -359,9 +369,8 @@ class Turtle {
 // console.log(new Turtle(0, 0).forward(3).right().forward(2).allPoints()) //return [ [ 0, 0 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ], [ 3, 1 ], [ 3, 2 ] ]
 // console.log(new Turtle(0, 4).forward(3).left().forward(3).allPoints()) //return [[ 0, 4 ], [ 1, 4 ],[ 2, 4 ], [ 3, 4 ],[ 3, 3 ], [ 3, 2 ],[ 3, 1 ]]
 
-//Examples of usage:
-//Command line: "node turtle.js"
-//Please note that this turtle script doesn't support negative coordinates.
+//Examples of usage using command line: "node turtle.js"
+//Please note that the x-axis (the row where (0,0) is located) will always show on the grid.
 if (process.argv.slice(2).length === 0) {
     new Turtle(0, 0).forward(5).right().forward(5).right().forward(5).right().forward(5).print()
     // The above would log the following to the screen:
@@ -373,10 +382,10 @@ if (process.argv.slice(2).length === 0) {
     // •    •
     // ••••••
     // -- END LOG
-    const flash = new Turtle(0, 3).forward(3).left().forward(3);
+    const flash = new Turtle(0, 0).forward(3).left().forward(3);
     flash.print();
     // The above would log the following to the screen:
-    // -- BEGIN LOG
+    // -- BEGIN LOGs
     //    •
     //    •
     // ••••
@@ -409,6 +418,7 @@ if (process.argv.slice(2).length === 0) {
     // □□□■□□□□■□
     // □□□■■■■■■□
     // -- END LOG
+    
 }
 
 //Stretch: As A Script
@@ -460,11 +470,10 @@ const turtleCommand = function(arr){
             output.left()
         }
     }
-
     return output.print()
 }
 
-if (process.argv.slice(2).length !== 0 && !process.argv[2].includes('--output')) {
+if (process.argv.slice(2).length !== 0 && !process.argv[2].includes('--output=')) {
     const input = process.argv.slice(2).toString()
     let arr = input.split("-")
     turtleCommand(arr)
