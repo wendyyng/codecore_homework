@@ -327,13 +327,14 @@ const fs = require('fs');
 //Create the class Todo
 class Todo {
     constructor() {
-        this.items = []
+        this.items = [];
+        this.options = "(v) View • ( n ) New • (cX) Complete • (dX) Delete • (q) Quit";
         // [{ name: 'a', completed: false },
         // { name: "b", completed: true }]
     }
     //Menu bar
     menu() {
-        console.log("(v) View • ( n ) New • (cX) Complete • (dX) Delete • (q) Quit")
+        console.log(this.options)
     }
     //View: Display the contents of the todo list then the Todo Menu again.
     view() {
@@ -382,8 +383,8 @@ class Todo {
 }
 
 //To Do CLI function
-const toDoCli = (json) => {
-    let newList = new Todo
+const toDoCli = (ClassTodo, json) => {
+    let newList = new ClassTodo
     if (json) {
         json.forEach(item => newList.items.push(item))
     }
@@ -410,6 +411,13 @@ const toDoCli = (json) => {
             //Pressing q quits the application
             newList.quit()
             process.exit(1)
+        }  else if (input === 's') {
+            //Stretch: Save to File
+            terminal.question("Where?(myTodos.json)\n", function (item) {
+                newList.save(item)
+            })
+        } else{
+            newList.menu()
         }
     })
 }
@@ -468,13 +476,14 @@ if (/^.+\.json$/.test(process.argv[2])) {
       })
       .then((data) => {
 
-        toDoCli(JSON.parse(data))
+        toDoCli(Todo, JSON.parse(data))
       }).catch(console.error)
   
-  }else{
+  }else if (/todoCLI\.js$/.test(process.argv[1])){
     //If no JSON file is provided as an argument
     //Example Usage: node todoCLI.js
-    toDoCli()
+    // console.log(currentScript()) 
+    toDoCli(Todo)
   }
-
+  
   module.exports = {Todo, toDoCli, writeFile, readFile, readdir};
