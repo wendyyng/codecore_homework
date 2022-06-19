@@ -324,7 +324,7 @@ const terminal = readline.createInterface({
 })
 const fs = require('fs');
 // -------------------------------------------------------------------------------------------------------------------------------------
-//Create the class Todo
+//Create the Todo class
 class Todo {
     constructor() {
         this.items = [];
@@ -363,14 +363,14 @@ class Todo {
     }
     //Complete: Mark that item with corresponding index as complete. 
     complete(index) {
-        //Tell the user which item was marked. Then, re-display the Todo Menu.
+        //Tell the user which item was marked
         console.log(`Completed "${this.items[index].name}"`)
         this.items[index].completed = true;
         this.menu()
     }
     //Delete: From the Todo Menu pressing dX where X refers to the index of a Todo item 
     deleted(index) {
-        //Tell the user which item was deleted. Then, re-display the Todo Menu.
+        //Tell the user which item was deleted
         console.log(`Deleted "${this.items[index].name}"`)
         // `Enter` should remove that from the list. 
         this.items.splice(index, 1)
@@ -472,7 +472,7 @@ if (/^.+\.json$/.test(process.argv[2])) {
         if(fileNames.includes(process.argv[2])){
           fileData.push(readFile(`./${process.argv[2]}`))
         }
-
+        
         return Promise.all(fileData)
       })
       .then((data) => {
