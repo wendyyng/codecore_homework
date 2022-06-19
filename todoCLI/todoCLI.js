@@ -333,7 +333,7 @@ class Todo {
     }
     //Menu bar
     menu() {
-        console.log("(v) View • ( n ) New • (cX) Complete • (dX) Delete • (s) Save • (q) Quit")
+        console.log("(v) View • ( n ) New • (cX) Complete • (dX) Delete • (q) Quit")
     }
     //View: Display the contents of the todo list then the Todo Menu again.
     view() {
@@ -413,3 +413,68 @@ const toDoCli = (json) => {
         }
     })
 }
+
+// Stretch: Open File
+//Read Directory function that returns a promise
+function readdir(pathName) {
+    return new Promise((resolve, reject) => {
+      fs.readdir(pathName, (err, files) => {
+        if (err)
+          reject(err);
+        else {
+          resolve(files)
+        }
+      })
+    })
+  }
+//Read File function that returns a promise
+  function readFile(fileName) {
+    return new Promise((resolve, reject) => {
+      fs.readFile(fileName, { encoding: 'utf8' }, (err, data) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(data)
+        }
+      })
+    })
+  }
+//Write File function that returns a promise
+  function writeFile(fileName, content) {
+    return new Promise((resolve, reject) => {
+      fs.writeFile(fileName, content, err => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
+        }
+      })
+    })
+  }
+
+  //If the user provides a JSON file as an argument 
+  //(file name must has at least one character followed by ".json")
+  //Example Usage: node todoCLI.js myTodos.json
+  //An example json file "myTodos.json" is provided in the current directory
+if (/^.+\.json$/.test(process.argv[2])) {
+    readdir(".")
+      .then((fileNames) => {
+        let fileData = []
+        if(fileNames.includes(process.argv[2])){
+          fileData.push(readFile(`./${process.argv[2]}`))
+        }
+
+        return Promise.all(fileData)
+      })
+      .then((data) => {
+
+        toDoCli(JSON.parse(data))
+      }).catch(console.error)
+  
+  }else{
+    //If no JSON file is provided as an argument
+    //Example Usage: node todoCLI.js
+    toDoCli()
+  }
+
+  module.exports = {Todo, toDoCli, writeFile, readFile, readdir};
