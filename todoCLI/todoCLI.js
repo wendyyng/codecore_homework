@@ -316,7 +316,13 @@
 // >
 
 // -------------------------------------------------------------------------------------------------------------------------------------
-
+//Add interactive CLI by using Node's readline and fs modules
+const readline = require('readline')
+const terminal = readline.createInterface({
+    input: process.stdin, // process standard in is an object that represents input from a terminal
+    output: process.stdout // process standard out is an object that represents the output to the terminal
+})
+const fs = require('fs');
 
 //Create the class Todo
 class Todo {
@@ -339,6 +345,8 @@ class Todo {
             for (let i = 0; i < this.items.length; i++) {
                 output += `${i} [`
                 if (this.items[i].completed === true) {
+                    // When displaying the list, completed items should have a checkmark (i.e. `✓`) 
+                    // besides their title. For example: 0 [✓] Take out the trash
                     output += "✓"
                 }
                 output += `] ${this.items[i].name}\n`
@@ -371,4 +379,37 @@ class Todo {
     quit() {
         console.log('See you soon! 😄')
     }
+}
+
+//To Do CLI function
+const toDoCli = (json) => {
+    let newList = new Todo
+    if (json) {
+        json.forEach(item => newList.items.push(item))
+    }
+    console.log("Welcome to Todo CLI!\n\n--------------------\n")
+    newList.menu()
+    terminal.on('line', function (input) {
+        if (input === 'v') {
+            //Pressing v then Enter will display the contents of the todo list
+            newList.view()
+        } else if (input === 'n') {
+            //Pressing n then Enter will ask the user what item to add to the list
+            terminal.question("What?\n", function (item) {
+                //User's input will be added to the list
+                newList.add(item)
+            })
+        } else if (/^c[0-9]+$/.test(input)) {
+            //Pressing cX where X refers to the index of a Todo item then Enter 
+            //should mark that item as complete.
+            newList.complete(input.substring(1))
+        } else if (/^d[0-9]+$/.test(input)) {
+            //Pressing dX where X refers to the index of a Todo item then `Enter` should remove that from the list. 
+            newList.deleted(input.substring(1))
+        } else if (input === 'q') {
+            //Pressing q quits the application
+            newList.quit()
+            process.exit(1)
+        }
+    })
 }
