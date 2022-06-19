@@ -329,8 +329,6 @@ class Todo {
     constructor() {
         this.items = [];
         this.options = "(v) View • ( n ) New • (cX) Complete • (dX) Delete • (q) Quit";
-        // [{ name: 'a', completed: false },
-        // { name: "b", completed: true }]
     }
     //Menu bar
     menu() {

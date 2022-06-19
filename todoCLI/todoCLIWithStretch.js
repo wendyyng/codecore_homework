@@ -1,4 +1,5 @@
 //Stretch: Save File
+//Example Usage: node todoCLIWithStretch.js
 
 const { Todo, toDoCli, writeFile } = require('./todoCLI')
 
