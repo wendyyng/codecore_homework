@@ -323,7 +323,7 @@ const terminal = readline.createInterface({
     output: process.stdout // process standard out is an object that represents the output to the terminal
 })
 const fs = require('fs');
-
+// -------------------------------------------------------------------------------------------------------------------------------------
 //Create the class Todo
 class Todo {
     constructor() {
@@ -381,7 +381,7 @@ class Todo {
         console.log('See you soon! 😄')
     }
 }
-
+// -------------------------------------------------------------------------------------------------------------------------------------
 //To Do CLI function
 const toDoCli = (ClassTodo, json) => {
     let newList = new ClassTodo
@@ -422,6 +422,7 @@ const toDoCli = (ClassTodo, json) => {
     })
 }
 
+// -------------------------------------------------------------------------------------------------------------------------------------
 // Stretch: Open File
 //Read Directory function that returns a promise
 function readdir(pathName) {
@@ -482,8 +483,7 @@ if (/^.+\.json$/.test(process.argv[2])) {
   }else if (/todoCLI\.js$/.test(process.argv[1])){
     //If no JSON file is provided as an argument
     //Example Usage: node todoCLI.js
-    // console.log(currentScript()) 
     toDoCli(Todo)
   }
-  
+
   module.exports = {Todo, toDoCli, writeFile, readFile, readdir};
