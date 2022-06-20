@@ -4,22 +4,31 @@
 const { Todo, toDoCli, writeFile } = require('./todoCLI')
 
 class StretchTodo extends Todo {
-    constructor() {
-        super();
+    constructor(newFileName) {
+        super(newFileName);
         //A new menu bar with 'Save' option
-        this.options = "(v) View • ( n ) New • (cX) Complete • (dX) Delete • (s) Save • (q) Quit"
+        this.options = "(v) View • ( n ) New • (cX) Complete • (dX) Delete • (s) Save • (q) Quit";
+        //If a filePath argument has been given, it will be saved as the suggested file path to save the file
+        this.newFileName = newFileName;
     }
     //Save: Add the ability to save a file
     save(fileName) {
-        //If a filePath argument has been given, use it as a suggested filePath to save the file. 
         //If the user presses Enter without giving a new filePath, use the suggested filePath
-        //Default suggested fileName is "myTodos.json"
         //*** Please note that there is already an example json file "myTodos.json" in current directory
-        if (!fileName) fileName = "myTodos.json"
+        //*** If same file path name is used, the example json file will be overwritten
+        if (!fileName) fileName = this.newFileName
         writeFile(fileName, JSON.stringify(this.items))
             .then(console.log(`List saved to "${fileName}"`))
-
+        this.menu()
     }
 }
 
-toDoCli(StretchTodo)
+//Example Usage: node todoCLIWithStretch.js myTodos.json
+if (/^.+\.json$/.test(process.argv[2])) {
+    let filePath = process.argv[2]
+    toDoCli(StretchTodo,undefined,filePath)
+} else {
+    //Else if no filePath argument is given
+    //Example Usage: node todoCLIWithStretch.js
+    toDoCli(StretchTodo)
+}

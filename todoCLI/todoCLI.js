@@ -381,8 +381,8 @@ class Todo {
 }
 // -------------------------------------------------------------------------------------------------------------------------------------
 //To Do CLI function
-const toDoCli = (ClassTodo, json) => {
-    let newList = new ClassTodo
+const toDoCli = (ClassTodo, json, newFileName) => {
+    let newList = new ClassTodo(newFileName)
     if (json) {
         json.forEach(item => newList.items.push(item))
     }
@@ -409,12 +409,19 @@ const toDoCli = (ClassTodo, json) => {
             //Pressing q quits the application
             newList.quit()
             process.exit(1)
-        }  else if (input === 's') {
+        } else if (input === 's') {
             //Stretch: Save to File
-            terminal.question("Where?(myTodos.json)\n", function (item) {
-                newList.save(item)
-            })
-        } else{
+            if (newList.newFileName){
+                // If a filePath argument has been given, use it as a suggested filePath to save the file.
+                terminal.question(`Where? (${newList.newFileName})\n`, function (item) {
+                    newList.save(item)
+                    })
+            }else{
+                terminal.question("Where?\n", function (item) {
+                    newList.save(item)
+                    })
+            }
+        } else {
             newList.menu()
         }
     })
@@ -425,63 +432,63 @@ const toDoCli = (ClassTodo, json) => {
 //Read Directory function that returns a promise
 function readdir(pathName) {
     return new Promise((resolve, reject) => {
-      fs.readdir(pathName, (err, files) => {
-        if (err)
-          reject(err);
-        else {
-          resolve(files)
-        }
-      })
+        fs.readdir(pathName, (err, files) => {
+            if (err)
+                reject(err);
+            else {
+                resolve(files)
+            }
+        })
     })
-  }
+}
 //Read File function that returns a promise
-  function readFile(fileName) {
+function readFile(fileName) {
     return new Promise((resolve, reject) => {
-      fs.readFile(fileName, { encoding: 'utf8' }, (err, data) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(data)
-        }
-      })
+        fs.readFile(fileName, { encoding: 'utf8' }, (err, data) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(data)
+            }
+        })
     })
-  }
+}
 //Write File function that returns a promise
-  function writeFile(fileName, content) {
+function writeFile(fileName, content) {
     return new Promise((resolve, reject) => {
-      fs.writeFile(fileName, content, err => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve()
-        }
-      })
+        fs.writeFile(fileName, content, err => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve()
+            }
+        })
     })
-  }
+}
 
-  //If the user provides a JSON file as an argument 
-  //(file name must has at least one character followed by ".json")
-  //Example Usage: node todoCLI.js myTodos.json
-  //An example json file "myTodos.json" is provided in the current directory
-if (/^.+\.json$/.test(process.argv[2])) {
+//If the user provides a JSON file as an argument 
+//(file name must has at least one character followed by ".json")
+//Example Usage: node todoCLI.js myTodos.json
+//An example json file "myTodos.json" is provided in the current directory
+if (/todoCLI\.js$/.test(process.argv[1]) && /^.+\.json$/.test(process.argv[2])) {
     readdir(".")
-      .then((fileNames) => {
-        let fileData = []
-        if(fileNames.includes(process.argv[2])){
-          fileData.push(readFile(`./${process.argv[2]}`))
-        }
-        
-        return Promise.all(fileData)
-      })
-      .then((data) => {
+        .then((fileNames) => {
+            let fileData = []
+            if (fileNames.includes(process.argv[2])) {
+                fileData.push(readFile(`./${process.argv[2]}`))
+            }
 
-        toDoCli(Todo, JSON.parse(data))
-      }).catch(console.error)
-  
-  }else if (/todoCLI\.js$/.test(process.argv[1])){
+            return Promise.all(fileData)
+        })
+        .then((data) => {
+
+            toDoCli(Todo, JSON.parse(data))
+        }).catch(console.error)
+
+} else if (/todoCLI\.js$/.test(process.argv[1]) && !process.argv[2]) {
     //If no JSON file is provided as an argument
     //Example Usage: node todoCLI.js
     toDoCli(Todo)
-  }
+}
 
-  module.exports = {Todo, toDoCli, writeFile, readFile, readdir};
+module.exports = { Todo, toDoCli, writeFile, readFile, readdir };
