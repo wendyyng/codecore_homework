@@ -26,7 +26,9 @@ class StretchTodo extends Todo {
 //Example Usage: node todoCLIWithStretch.js myTodos.json
 if (/^.+\.json$/.test(process.argv[2])) {
     let filePath = process.argv[2]
-    toDoCli(StretchTodo,undefined,filePath)
+    //Since the question doesn't require todoCLIWithStretch.js to also support opening a JSON file
+    //So the second argument (openFileName) is undefined in this case
+    toDoCli(StretchTodo, undefined, filePath)
 } else {
     //Else if no filePath argument is given
     //Example Usage: node todoCLIWithStretch.js

@@ -381,10 +381,10 @@ class Todo {
 }
 // -------------------------------------------------------------------------------------------------------------------------------------
 //To Do CLI function
-const toDoCli = (ClassTodo, json, newFileName) => {
+const toDoCli = (ClassTodo, openFileName, newFileName) => {
     let newList = new ClassTodo(newFileName)
-    if (json) {
-        json.forEach(item => newList.items.push(item))
+    if (openFileName) {
+        openFileName.forEach(item => newList.items.push(item))
     }
     console.log("Welcome to Todo CLI!\n\n--------------------\n")
     newList.menu()
@@ -411,15 +411,15 @@ const toDoCli = (ClassTodo, json, newFileName) => {
             process.exit(1)
         } else if (input === 's') {
             //Stretch: Save to File
-            if (newList.newFileName){
+            if (newList.newFileName) {
                 // If a filePath argument has been given, use it as a suggested filePath to save the file.
                 terminal.question(`Where? (${newList.newFileName})\n`, function (item) {
                     newList.save(item)
-                    })
-            }else{
+                })
+            } else {
                 terminal.question("Where?\n", function (item) {
                     newList.save(item)
-                    })
+                })
             }
         } else {
             newList.menu()
