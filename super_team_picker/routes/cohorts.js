@@ -58,4 +58,18 @@ router.get('/:id/edit', (req, res) => {
 })
 //Made edit.ejs
 
+//6. ---------------------Update particular Cohort---------------
+router.patch('/:id', (req, res) => {
+  knex('cohorts')
+  .where('id', req.params.id)
+  .update({
+    logo_url: req.body.logo_url,
+    name: req.body.name,
+    members: req.body.members
+  })
+  .then(() => {
+      res.redirect(`/cohorts/${req.params.id}`)
+  })
+})
+
 module.exports = router;
