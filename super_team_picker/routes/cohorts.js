@@ -3,22 +3,21 @@ const knex = require('../db/client');
 const router = express.Router()
 const { numberPerTeam, countTeam } = require('./assign')
 
-//1. ------------------------Index of all Posts: ---------------
+//1. Index of all Posts:
 router.get('/', (req,res) => {
     knex('cohorts')
     .orderBy('created_at', 'desc')
     .then(posts => {
-      res.render('cohorts/index', {posts: posts}) //render will look into 'views'
+      res.render('cohorts/index', {posts: posts}) 
     })
   })
-  //Added index.ejs
 
-//3. ----------------Render New Cohort Template ------------------------
+//3. Render New Cohort Template 
 router.get('/new', (req, res) => {
   res.render('cohorts/new', {post: false})
 })
 
-//4. ----------------Create new cohort------------------------
+//4. Create new cohort
 router.post('/', (req, res) => {
   knex('cohorts')
   .insert({
@@ -33,9 +32,8 @@ router.post('/', (req, res) => {
   })
 })
 
-//2.-----------------Show a single cohort----------------------
-//8.------------------Assign Teams-----------------------------
-//Created assign.js with countTeam and numberPerTeam functions
+//2.Show a single cohort
+//8.Assign teams
 router.get('/:id', (req, res) => {
   let method = false
   let quantity = false
@@ -46,7 +44,7 @@ router.get('/:id', (req, res) => {
   }
   knex('cohorts')
   .where('id', req.params.id)
-  .first() // this will grab the first instance that matches the requirements
+  .first() // 
   .then(cohort => {
     if (!cohort) {
       res.send('No cohort found')
@@ -65,7 +63,7 @@ router.get('/:id', (req, res) => {
     }
   })
 })
-// 5. ------------------Render Edit Cohort Template--------------
+// 5. Render Edit Cohort Template
 router.get('/:id/edit', (req, res) => {
   knex('cohorts')
   .where('id', req.params.id)
@@ -74,9 +72,8 @@ router.get('/:id/edit', (req, res) => {
     res.render('cohorts/edit', {post: post})
   })
 })
-//Made edit.ejs
 
-//6. ---------------------Update particular Cohort---------------
+//6. Update particular Cohort
 router.patch('/:id', (req, res) => {
   knex('cohorts')
   .where('id', req.params.id)
@@ -90,7 +87,7 @@ router.patch('/:id', (req, res) => {
   })
 })
 
-//7. --------------Delete--------------
+//7. Delete
 router.delete("/:id", (req, res) => {
   knex('cohorts')
   .where('id', req.params.id)

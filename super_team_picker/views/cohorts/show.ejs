@@ -1,6 +1,6 @@
 <%- include("../partials/header.ejs") %>
 
-  <div class="card" style="width: 18rem;">
+  <div class="card">
     <div class="card-body">
       <div class="card-title card-show">
         <h5>
@@ -12,7 +12,7 @@
       </div>
     </div>
      <hr>
-    <!-- Assign Teams -->
+    <!-- Assign Team Methods -->
     <div>
     <form action="/cohorts/<%=post.id%>" method="GET">
       <label for="form-check">Method</label>
@@ -35,7 +35,6 @@
         <label for="quantity" >Quantity</label>
         <input name="number" type="number" class="form-control" id="quantity" min="1" max="<%- post.members.split(",").length %>" value="<%=number%>" required>
       </div>
-      <!-- <a href="#" class="btn btn-primary">Assign Teams</a> -->
       <button type="submit" class="btn btn-outline-primary btn-block">Assign Teams</button>
 
       
