@@ -36,6 +36,7 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
   let method = false
   let quantity = false
+  let assignedTeam = false
     knex('cohorts')
     .where('id', req.params.id)
     .first()
@@ -43,7 +44,7 @@ router.get('/:id', (req, res) => {
       if (!post) {
         res.send('No cohort found')
       } else {
-        res.render('cohorts/show', {post: post, temp: false, method: method, quantity: quantity, number: quantity})
+        res.render('cohorts/show', {post: post, assignedTeam: assignedTeam, temp: false, method: method, quantity: quantity, number: quantity})
       }
     })
   })

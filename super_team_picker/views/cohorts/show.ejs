@@ -49,5 +49,30 @@
 
   </div>
 
+   <!-- Show Assigned Teams -->
+   <%if(assignedTeam){ %>
+    <div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Members</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        <%for(let team of assignedTeam){ %>
+        <tr>
+          <th scope="row"><%-assignedTeam.indexOf(team) + 1%></th>
+          <td><%-team%></td>
+        </tr>
+        <%}%>
+       
+      </tbody>
+   
+    </table>
+  </div>
+  <%}%>
+  </div>
 
   <%- include("../partials/footer.ejs") %>
