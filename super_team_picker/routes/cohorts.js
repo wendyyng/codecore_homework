@@ -47,5 +47,15 @@ router.get('/:id', (req, res) => {
   })
 // Add show.ejs to show each cohort's page
 
+// 5. ------------------Render Edit Cohort Template--------------
+router.get('/:id/edit', (req, res) => {
+  knex('cohorts')
+  .where('id', req.params.id)
+  .first()
+  .then(post => {
+    res.render('cohorts/edit', {post: post})
+  })
+})
+//Made edit.ejs
 
 module.exports = router;
