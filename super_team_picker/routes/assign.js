@@ -39,3 +39,15 @@ const countTeam = (quantity, members) => {
   }
   return result
 }
+
+//Method: Number Per Team
+const numberPerTeam = (quantity, members) => {
+  let arr = shuffleArr(members)
+  let result = []
+  for(let i = 0; arr.length > 0 ; i++){
+    result.push(arr.splice(0, quantity))
+  }
+  return result
+}
+//Export to the cohorts.js
+module.exports = {numberPerTeam, countTeam}
