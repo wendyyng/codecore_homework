@@ -41,7 +41,8 @@
 }
 
 .card {
-    margin: 0.5em 1em 0.5em 1em
+    margin: 0.5em 1em 0.5em 1em;
+    width: 18rem;
 }
 
 /* --------------------New Cohort Page -------------------- */
@@ -120,4 +121,8 @@ th, td {
 .cohort-container{
     display: flex;
     justify-content: center;
+}
+
+hr {
+    margin-top: 0;
 }
