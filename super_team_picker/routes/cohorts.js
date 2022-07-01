@@ -1,6 +1,7 @@
 const express = require('express');
 const knex = require('../db/client');
 const router = express.Router()
+const { numberPerTeam, countTeam } = require('./assign')
 
 //1. ------------------------Index of all Posts: ---------------
 router.get('/', (req,res) => {
@@ -32,24 +33,38 @@ router.post('/', (req, res) => {
   })
 })
 
-  //2.-----------------Show a single cohort----------------------
+//2.-----------------Show a single cohort----------------------
+//8.------------------Assign Teams-----------------------------
+//Created assign.js with countTeam and numberPerTeam functions
 router.get('/:id', (req, res) => {
   let method = false
   let quantity = false
   let assignedTeam = false
-    knex('cohorts')
-    .where('id', req.params.id)
-    .first()
-    .then(post => {
-      if (!post) {
-        res.send('No cohort found')
-      } else {
-        res.render('cohorts/show', {post: post, assignedTeam: assignedTeam, temp: false, method: method, quantity: quantity, number: quantity})
-      }
-    })
-  })
-// Add show.ejs to show each cohort's page
+  if(req.query.method && req.query.number){
+    method = req.query.method
+    quantity = req.query.number
+  }
+  knex('cohorts')
+  .where('id', req.params.id)
+  .first() // this will grab the first instance that matches the requirements
+  .then(cohort => {
+    if (!cohort) {
+      res.send('No cohort found')
+    } else {
+      
+      if (method === "teamCount"){
+        assignedTeam = cohort.members.split(",")
+        assignedTeam = countTeam(quantity, assignedTeam)
+       }else if(method === "perTeam"){
+        assignedTeam = cohort.members.split(",")
+        assignedTeam = numberPerTeam(quantity, assignedTeam)
+       }
 
+      res.render('cohorts/show', {post: cohort, assignedTeam: assignedTeam, quantity: quantity, number: quantity, 
+        method:method})
+    }
+  })
+})
 // 5. ------------------Render Edit Cohort Template--------------
 router.get('/:id/edit', (req, res) => {
   knex('cohorts')
