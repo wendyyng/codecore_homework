@@ -1,5 +1,4 @@
 /* --------------------Navbar -------------------- */
-/* Changing the color of the nav bar texts */
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
     color: #0d6efd;
 }
@@ -16,20 +15,17 @@
 } 
 
 /* --------------------Cohorts Page -------------------- */
-/* Adjusting size of thumbails */
 .rounded-circle, .z-depth-2 {
     width: 2em;
     height: auto;
 }
 
-/* Making thumbnails and card titles to be in the same row */
 .card-title {
     display: flex;
     flex-direction: row;
 }
 
 .card-title > h5, .card-title > img {
-   /* margin-left: 0.5em; */
    text-align: justify;
    margin: 0.3em;
 }
@@ -46,7 +42,6 @@
 }
 
 /* --------------------New Cohort Page -------------------- */
-/* Add margin to new cohort cards */
 form > div {
     margin: 1em;
 }
