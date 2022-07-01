@@ -37,14 +37,15 @@
       </div>
       <!-- <a href="#" class="btn btn-primary">Assign Teams</a> -->
       <button type="submit" class="btn btn-outline-primary btn-block">Assign Teams</button>
-     
+
+      
     </form>
     <div class="cohort-container">
       <form action="/cohorts/<%- post.id %>" method="POST">
+        <a class="btn btn-outline-primary" href="/cohorts/<%- post.id %>/edit" id="edit">Edit</a>
         <input type="hidden" name="_method" value="DELETE" >
         <input type="submit" class="btn btn-outline-danger" value="Delete" id="delete">
       </form>
-      <a class="btn btn-outline-primary" href="/cohorts/<%- post.id %>/edit" id="edit">Edit</a>
       </div>
 
   </div>

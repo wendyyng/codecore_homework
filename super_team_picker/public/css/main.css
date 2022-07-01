@@ -1,5 +1,3 @@
-/* --------------------General -------------------- */
-
 /* --------------------Navbar -------------------- */
 /* Changing the color of the nav bar texts */
 .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
@@ -101,16 +99,25 @@ table {
     width: 95%
   }
   
-  th, td {
+th, td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-  }
+}
 
-  .card-show {
+.card-show {
     flex-direction: column;
-  }
+}
 
-  .card-text {
+.card-text {
     margin-left: 0.5em;;
-  }
+}
+
+#edit, #delete {
+    width: 7.8em;
+    margin:0.3em 0 0.3em 0;
+}
+.cohort-container{
+    display: flex;
+    justify-content: center;
+}
