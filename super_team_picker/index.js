@@ -28,6 +28,10 @@ const logger = require('morgan');
 const req = require('express/lib/request');
 app.use(logger('dev'));
 
+// Cohort Router
+const cohortRoutes = require('./routes/cohorts');
+app.use('/cohorts', cohortRoutes)
+
 //---------------------------ROUTERS--------------------------------->
 //Home Page
 app.get('/', (req, res) => {

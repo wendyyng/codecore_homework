@@ -1,6 +1,7 @@
 <%- include("../partials/header.ejs") %>
 
 <div id="cohorts-main">
+  <% if(posts){ %>
   <% for (let post of posts) { %>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
@@ -15,6 +16,7 @@
       <a href="cohorts/<%- post.id %>" class="btn btn-primary">Show cohort</a>
     </div>
   </div>
+  <% } %>
   <% } %>
 </div>
   <%- include("../partials/footer.ejs") %>

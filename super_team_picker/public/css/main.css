@@ -1,0 +1,116 @@
+/* --------------------General -------------------- */
+
+/* --------------------Navbar -------------------- */
+/* Changing the color of the nav bar texts */
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
+    color: #0d6efd;
+}
+
+.navbar {
+    margin-left: 1em;
+    margin-right: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bg-light {
+ --bs-bg-opacity: 0;
+} 
+
+/* --------------------Cohorts Page -------------------- */
+/* Adjusting size of thumbails */
+.rounded-circle, .z-depth-2 {
+    width: 2em;
+    height: auto;
+}
+
+/* Making thumbnails and card titles to be in the same row */
+.card-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-title > h5, .card-title > img {
+   /* margin-left: 0.5em; */
+   text-align: justify;
+   margin: 0.3em;
+}
+
+#cohorts-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    margin: 0.5em 1em 0.5em 1em
+}
+
+/* --------------------New Cohort Page -------------------- */
+/* Add margin to new cohort cards */
+form > div {
+    margin: 1em;
+}
+
+form > label {
+    margin-left: 1em;
+}
+
+form > button {
+    margin-left: 1em;
+}
+
+.submit {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+/* --------------------Homepage -------------------- */
+#welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+    font-size: 10em;
+}
+
+/* --------------------Show for each cohorts -------------------- */
+.btn-block {
+    width: 15.8em;
+}
+
+.cohort-container{
+    display: flex;
+}
+
+#delete, #edit {
+    width: 15em;
+    margin: 0 0.1em 0 0.1em
+}
+
+.card > hr {
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: 0.5em;
+    margin-right: 0.2em;
+    width: 95%
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .card-show {
+    flex-direction: column;
+  }
+
+  .card-text {
+    margin-left: 0.5em;;
+  }

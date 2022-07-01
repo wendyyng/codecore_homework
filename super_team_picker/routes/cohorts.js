@@ -12,11 +12,31 @@ router.get('/', (req,res) => {
   })
   //Added index.ejs
 
+//3. ----------------Render New Cohort Template ------------------------
+router.get('/new', (req, res) => {
+  res.render('cohorts/new', {post: false})
+})
+
+//4. ----------------Create new cohort------------------------
+router.post('/', (req, res) => {
+  knex('cohorts')
+  .insert({
+    logo_url: req.body.logo_url,
+    name: req.body.name,
+    members: req.body.members
+  })
+  .returning('*')
+  .then(posts => {
+    const post = posts[0]
+    res.redirect(`cohorts/${post.id}`)
+  })
+})
+
   //2.-----------------Show a single cohort----------------------
 router.get('/:id', (req, res) => {
     knex('cohorts')
     .where('id', req.params.id)
-    .first() // this will grab the first instance that matches the requirements
+    .first()
     .then(post => {
       if (!post) {
         res.send('No cohort found')
@@ -26,5 +46,6 @@ router.get('/:id', (req, res) => {
     })
   })
 // Add show.ejs to show each cohort's page
+
 
 module.exports = router;
