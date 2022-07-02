@@ -14,10 +14,10 @@
  --bs-bg-opacity: 0;
 } 
 
-/* --------------------Cohorts Page -------------------- */
+/* --------------------Cohorts Index Page -------------------- */
 .rounded-circle, .z-depth-2 {
     width: 2em;
-    height: auto;
+    height: 2em;
 }
 
 .card-title {
@@ -25,9 +25,13 @@
     flex-direction: row;
 }
 
-.card-title > h5, .card-title > img {
+.card-title > h1, .card-title > img {
    text-align: justify;
    margin: 0.3em;
+}
+
+.card-title > h1 {
+    font-size: 1.5em;
 }
 
 #cohorts-main {
@@ -120,4 +124,9 @@ th, td {
 
 hr {
     margin-top: 0;
+}
+
+/* --------------------Edit Page -------------------- */
+.form-group > * {
+    margin: 0.2em
 }
