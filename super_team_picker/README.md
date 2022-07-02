@@ -1,6 +1,8 @@
 # Super Team Picker
 
-Super Team Picker is a web application built with Node and Express that allows users to randomly generate teams based on selected methods and quantity.
+Super Team Picker is a web application built with Node and Express that allows users to:
+- Create, edit and delete cohorts
+- Randomly generate teams based on selected methods: team count/ number per team and quantity
 
 ## Final Product
 
@@ -27,11 +29,9 @@ Super Team Picker is a web application built with Node and Express that allows u
 - Bootstrap v5.1.3
 
 ## Getting Started
-- Install all dependencies using the 'npm' command
-### Run the server 
-- Using 'node index.js' command OR
-- Using 'node index.js' localhost 3000 OR
-- Using 'npm start' by adding "start": "nodemon" to "scripts" in package.json
+- Install all dependencies using the `npm` command
+- Run the server using `npm start` command
+- Set up database using Knex and PostgreSQL
 
 # File Structure
 
