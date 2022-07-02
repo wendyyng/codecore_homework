@@ -30,8 +30,9 @@ Super Team Picker is a web application built with Node and Express that allows u
 
 ## Getting Started
 - Install all dependencies using the `npm` command
-- Run the server using `npm start` command
 - Set up database using Knex and PostgreSQL
+- Run the server using `npm start` command
+
 
 # File Structure
 
