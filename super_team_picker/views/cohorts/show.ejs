@@ -1,0 +1,78 @@
+<%- include("../partials/header.ejs") %>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title card-show">
+        <h1>
+          <%- post.name %>
+        </h1>
+        <p class="card-text">
+          <%- post.members %>
+        </p>
+      </div>
+    </div>
+     <hr>
+    <!-- Assign Team Methods -->
+    <div>
+    <form action="/cohorts/<%=post.id%>" method="GET">
+      <label for="form-check">Method</label>
+      <%let teamCountChecked = ""%>
+      <%let perTeamChecked = "" %>
+      <%if(method === "teamCount"){ %>
+        <%teamCountChecked = "checked"%>
+         <%}else if(method === "perTeam"){%>
+         <%perTeamChecked = "checked"%>
+         <%}%>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="method" id="team-count" value="teamCount" <%-teamCountChecked%> required>
+        <label class="form-check-label" for="inlineRadio1">Team Count</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="method" id="number-per-team" value="perTeam" <%-perTeamChecked%>>
+        <label class="form-check-label" for="inlineRadio2">Number Per Team</label>
+      </div>
+      <div class="form-group">
+        <label for="quantity" >Quantity</label>
+        <input name="number" type="number" class="form-control" id="quantity" min="1" max="<%- post.members.split(",").length %>" value="<%=number%>" required>
+      </div>
+      <button type="submit" class="btn btn-outline-primary btn-block">Assign Teams</button>
+
+      
+    </form>
+    <div class="cohort-container">
+      <form action="/cohorts/<%- post.id %>" method="POST">
+        <a class="btn btn-outline-primary" href="/cohorts/<%- post.id %>/edit" id="edit">Edit</a>
+        <input type="hidden" name="_method" value="DELETE" >
+        <input type="submit" class="btn btn-outline-danger" value="Delete" id="delete">
+      </form>
+      </div>
+
+  </div>
+
+   <!-- Show Assigned Teams -->
+   <%if(assignedTeam){ %>
+    <div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Members</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        <%for(let team of assignedTeam){ %>
+        <tr>
+          <th scope="row"><%-assignedTeam.indexOf(team) + 1%></th>
+          <td><%-team%></td>
+        </tr>
+        <%}%>
+       
+      </tbody>
+   
+    </table>
+  </div>
+  <%}%>
+  </div>
+
+  <%- include("../partials/footer.ejs") %>

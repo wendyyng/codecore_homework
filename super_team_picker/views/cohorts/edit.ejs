@@ -1,0 +1,10 @@
+<%- include("../partials/header.ejs") %>
+  <form action="/cohorts/<%- post.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <%- include("../partials/formInput.ejs") %>
+    <div class="submit">
+      <button type="submit" class="btn btn-outline-primary" value="Edit Post">Submit</button>
+    </div>
+  </form>
+
+  <%- include("../partials/footer.ejs") %>

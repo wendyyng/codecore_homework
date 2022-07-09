@@ -1,0 +1,16 @@
+<div class="form-group">
+    <label for="logo_url">Logo Url</label>
+    <input name="logo_url" type="text" class="form-control" id="logo_url" aria-describedby="basic-addon3"
+      placeholder="e.g. https://example.com/some.png" value="<%= post ? post.logo_url : '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" type="text" class="form-control" id="name" placeholder="Flying Funks" value="<%= post ? post.name : '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label for="members">Members</label>
+    <textarea placeholder="John Snow, Daenerys, Melisandre, Arya Stark" name="members" class="form-control" id="members" rows="3" required><%= post ? post.members.toString() : '' %></textarea> 
+</div>
+  
