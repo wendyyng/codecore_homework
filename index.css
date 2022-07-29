@@ -1,0 +1,22 @@
+/* .title {
+    font-size: large
+} */
+
+body { 
+    background: url(images/pexels-pixabay-162389.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .title {
+    font-family: 'Butcherman', cursive;
+    font-size: 5rem;
+  }
+
+  .hangman-img {
+    width: 20em;
+    border: black solid;
+    box-shadow: -17px 0px 0px #dbdbdb inset, 0 0 50px #f70404;
+  }
