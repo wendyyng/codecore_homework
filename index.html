@@ -2,107 +2,109 @@
 <html>
 
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>HANGMAN</title>
-  <link rel="stylesheet" href="index.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="stylesheet" href="bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Butcherman&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>HANGMAN</title>
+    <link rel="stylesheet" href="index.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Butcherman&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container-fluid d-flex justify-content-center pt-5 pb-3" id="title">
+    <div class="container-fluid d-flex justify-content-center pt-5 pb-3 flex-column align-items-center" id="title">
         <h1 class="title">HANGMAN</h1>
+        <p class="test"></p>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-4">
-                <img class="hangman-img" src="images/gallows.jpg">
+                <img class="hangman-img" src="images/1_gallows.jpg">
             </div>
             <div class="col-8">
                 <div class="keys container ">
                     <div class="row d-flex">
-                        <button id="a" class="key rounded">
+                        <button id="A" class="key rounded">
                             A
                         </button>
-                        <button id="b" class="key rounded">
+                        <button id="B" class="key rounded">
                             B
                         </button>
-                        <button id="c"class="key rounded">
+                        <button id="C"class="key rounded">
                             C
                         </button>
-                        <button id="d"class="key rounded">
+                        <button id="D"class="key rounded">
                             D
                         </button>
-                        <button id="e"class="key rounded">
+                        <button id="E"class="key rounded">
                             E
                         </button>
-                        <button id="f"class="key rounded">
+                        <button id="F"class="key rounded">
                             F
                         </button>
-                        <button id="g"class="key rounded">
+                        <button id="G"class="key rounded">
                             G
                         </button>
-                        <button id="h"class="key rounded">
+                        <button id="H"class="key rounded">
                             H
                         </button>
-                        <button id="i"class="key rounded">
+                        <button id="I"class="key rounded">
                             I
                         </button>
-                        <button id="j"class="key rounded">
+                        <button id="J"class="key rounded">
                             J
                         </button>
                     </div>
                     <div class="row d-flex">
-                        <button id="k"class="key rounded">
+                        <button id="K"class="key rounded">
                             K
                         </button>
-                        <button id="l"class="key rounded">
+                        <button id="L"class="key rounded">
                             L
                         </button>
-                        <button id="m"class="key rounded">
+                        <button id="M"class="key rounded">
                             M
                         </button>
-                        <button id="n"class="key rounded">
+                        <button id="N"class="key rounded">
                             N
                         </button>
-                        <button id="o"class="key rounded">
+                        <button id="O"class="key rounded">
                             O
                         </button>
-                        <button id="p"class="key rounded">
+                        <button id="P"class="key rounded">
                             P
                         </button>
-                        <button id="q"class="key rounded">
+                        <button id="Q"class="key rounded">
                             Q
                         </button>
-                        <button id="r"class="key mcrounded">
+                        <button id="R"class="key mcrounded">
                             R
                         </button>
-                        <button id="s"class="key rounded">
+                        <button id="S"class="key rounded">
                             S
                         </button>
-                        <button id="t"class="key rounded">
+                        <button id="T"class="key rounded">
                             T
                         </button>
                     </div>
                     <div class="row">
-                        <button id="u"class="key rounded">
+                        <button id="U"class="key rounded">
                             U
                         </button>
-                        <button id="v"class="key rounded">
+                        <button id="V"class="key rounded">
                             V
                         </button>
-                        <button id="w"class="key rounded">
+                        <button id="W"class="key rounded">
                             W
                         </button>
-                        <button id="x"class="key rounded">
+                        <button id="X"class="key rounded">
                             X
                         </button>
-                        <button id="y"class="key rounded">
+                        <button id="Y"class="key rounded">
                             Y
                         </button>
-                        <button id="z"class="key rounded">
+                        <button id="Z"class="key rounded">
                             Z
                         </button>
                     </div>

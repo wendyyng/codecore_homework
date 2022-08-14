@@ -2,21 +2,22 @@
     font-size: large
 } */
 
-/* body { 
+body { 
     background: url(images/pexels-pixabay-162389.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  } */
+  }
 
   .title {
     font-family: 'Butcherman', cursive;
     font-size: 5rem;
+    color: rgb(124, 8, 8);
   }
 
   .hangman-img {
-    width: 20em;
+    width: 18em;
     border: black solid;
     box-shadow: -17px 0px 0px #dbdbdb inset, 0 0 50px #f70404;
   }
@@ -28,4 +29,15 @@
     font-weight: bold;
     padding: 1em;
     margin: 0.5em;
+  }
+
+  .answer {
+    box-shadow: -17px 0px 0px #dbdbdb inset, 0 0 50px #f70404;
+    background-color: white;
+  }
+
+  .letter {
+    text-decoration: underline;
+    margin-left: 0.5em;
+    font-size: 2em;
   }
