@@ -17,8 +17,8 @@ $(document).ready(() => {
 
     // $('.test').html(`Answer: ${nameArray[randomName]}`)
     
-    console.log(randomName, nameArray[randomName])
-    console.log(randomNameArr)
+    // console.log(randomName, nameArray[randomName])
+    // console.log(randomNameArr)
     
     for(let i = 0; i < randomNameArr.length; i++){
         $('.word').append(`<span id=${i} class="letter">&#160&#160&#160</span>`)
@@ -34,7 +34,7 @@ $(document).ready(() => {
 
     function play(currentKey){
         if(status === true && !randomNameArr.includes(currentKey)){
-            console.log(status)
+            // console.log(status)
             wrong.currentTime = 0
             wrong.play()
             $(`#${currentKey}`).css("background-color", "red")
@@ -77,7 +77,7 @@ $(document).ready(() => {
 
     function checkSuccess(){
         if(randomNameArr.length == answerArr.length){
-            console.log(status)
+            // console.log(status)
             victory.play()
             $('.message').html("Congratulations you have gotten the answer!")
             status = false
